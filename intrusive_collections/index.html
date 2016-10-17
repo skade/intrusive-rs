@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `intrusive_collections` crate.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, intrusive_collections">
+
+    <title>intrusive_collections - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'></p><script>window.sidebarCurrent = {name: 'intrusive_collections', ty: 'mod', relpath: '../'};</script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content mod">
+<h1 class='fqn'><span class='in-band'>Crate <a class='mod' href=''>intrusive_collections</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-0' class='srclink' href='../src/intrusive_collections/src/lib.rs.html#8-369' title='goto source code'>[src]</a></span></h1>
+<div class='docblock'><p>Intrusive collections for Rust.</p>
+
+<p>Unlike normal colletions, an intrusive collection does not own the objects
+inside it. Instead it just tracks a set of already-existing objects. Such a
+collection is called intrusive because it requires explicit support in
+objects to allow them to be inserted into the collection. However, this
+allows intrusive collections to work without needed to allocate any memory.</p>
+
+<p>Semantically, intrusive collections are roughly equivalent to a standard
+collection holding a set of <code>*mut T</code>. However, since intrusive collections
+store data in the objects themselves, the pointers to these objects must
+remain valid as long as they are linked into a collection.</p>
+
+<h1 id='example' class='section-header'><a href='#example'>Example</a></h1>
+<pre class='rust rust-example-rendered'>
+<span class='attribute'>#[<span class='ident'>macro_use</span>]</span>
+<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>intrusive_collections</span>;
+<span class='kw'>use</span> <span class='ident'>intrusive_collections</span>::{<span class='ident'>IntrusiveRef</span>, <span class='ident'>LinkedList</span>, <span class='ident'>LinkedListLink</span>};
+<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>cell</span>::<span class='ident'>Cell</span>;
+
+<span class='comment'>// Define a struct containing an intrusive link, and an adaptor for it</span>
+<span class='kw'>struct</span> <span class='ident'>Test</span> {
+    <span class='ident'>link</span>: <span class='ident'>LinkedListLink</span>,
+    <span class='ident'>value</span>: <span class='ident'>Cell</span><span class='op'>&lt;</span><span class='ident'>i32</span><span class='op'>&gt;</span>,
+}
+<span class='macro'>intrusive_adaptor</span><span class='macro'>!</span>(<span class='ident'>TestAdaptor</span> <span class='op'>=</span> <span class='ident'>Test</span> { <span class='ident'>link</span>: <span class='ident'>LinkedListLink</span> });
+
+<span class='kw'>fn</span> <span class='ident'>main</span>() {
+    <span class='comment'>// Create a list and some objects</span>
+    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>list</span> <span class='op'>=</span> <span class='ident'>LinkedList</span>::<span class='ident'>new</span>(<span class='ident'>TestAdaptor</span>);
+    <span class='kw'>let</span> <span class='ident'>a</span> <span class='op'>=</span> <span class='ident'>IntrusiveRef</span>::<span class='ident'>from_box</span>(<span class='ident'>Box</span>::<span class='ident'>new</span>(<span class='ident'>Test</span> {
+        <span class='ident'>link</span>: <span class='ident'>LinkedListLink</span>::<span class='ident'>new</span>(),
+        <span class='ident'>value</span>: <span class='ident'>Cell</span>::<span class='ident'>new</span>(<span class='number'>1</span>),
+    }));
+    <span class='kw'>let</span> <span class='ident'>b</span> <span class='op'>=</span> <span class='ident'>IntrusiveRef</span>::<span class='ident'>from_box</span>(<span class='ident'>Box</span>::<span class='ident'>new</span>(<span class='ident'>Test</span> {
+        <span class='ident'>link</span>: <span class='ident'>LinkedListLink</span>::<span class='ident'>new</span>(),
+        <span class='ident'>value</span>: <span class='ident'>Cell</span>::<span class='ident'>new</span>(<span class='number'>2</span>),
+    }));
+    <span class='kw'>let</span> <span class='ident'>c</span> <span class='op'>=</span> <span class='ident'>IntrusiveRef</span>::<span class='ident'>from_box</span>(<span class='ident'>Box</span>::<span class='ident'>new</span>(<span class='ident'>Test</span> {
+        <span class='ident'>link</span>: <span class='ident'>LinkedListLink</span>::<span class='ident'>new</span>(),
+        <span class='ident'>value</span>: <span class='ident'>Cell</span>::<span class='ident'>new</span>(<span class='number'>3</span>),
+    }));
+
+    <span class='comment'>// Insert the objects at the front of the list. We use clone here to</span>
+    <span class='comment'>// send a copy of the IntrusiveRef to the list, rather than completely</span>
+    <span class='comment'>// relinquishing ownership.</span>
+    <span class='ident'>list</span>.<span class='ident'>push_front</span>(<span class='ident'>a</span>.<span class='ident'>clone</span>());
+    <span class='ident'>list</span>.<span class='ident'>push_front</span>(<span class='ident'>b</span>.<span class='ident'>clone</span>());
+    <span class='ident'>list</span>.<span class='ident'>push_front</span>(<span class='ident'>c</span>.<span class='ident'>clone</span>());
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>list</span>.<span class='ident'>iter</span>().<span class='ident'>map</span>(<span class='op'>|</span><span class='ident'>x</span><span class='op'>|</span> <span class='ident'>x</span>.<span class='ident'>value</span>.<span class='ident'>get</span>()).<span class='ident'>collect</span>::<span class='op'>&lt;</span><span class='ident'>Vec</span><span class='op'>&lt;</span>_<span class='op'>&gt;&gt;</span>(), [<span class='number'>3</span>, <span class='number'>2</span>, <span class='number'>1</span>]);
+
+    <span class='comment'>// We can modify the objects and the changes will be reflected in the</span>
+    <span class='comment'>// collection since it references the existing objects.</span>
+    <span class='ident'>c</span>.<span class='ident'>value</span>.<span class='ident'>set</span>(<span class='number'>4</span>);
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>list</span>.<span class='ident'>iter</span>().<span class='ident'>map</span>(<span class='op'>|</span><span class='ident'>x</span><span class='op'>|</span> <span class='ident'>x</span>.<span class='ident'>value</span>.<span class='ident'>get</span>()).<span class='ident'>collect</span>::<span class='op'>&lt;</span><span class='ident'>Vec</span><span class='op'>&lt;</span>_<span class='op'>&gt;&gt;</span>(), [<span class='number'>4</span>, <span class='number'>2</span>, <span class='number'>1</span>]);
+
+    <span class='comment'>// Once we remove objects from one collection, we are free to drop them</span>
+    <span class='comment'>// or insert them into another collection. Note that this isn&#39;t checked</span>
+    <span class='comment'>// by the compiler: you need to ensure that an object is not dropped</span>
+    <span class='comment'>// while still linked to an intrusive container.</span>
+    <span class='ident'>list</span>.<span class='ident'>back_mut</span>().<span class='ident'>remove</span>();
+    <span class='kw'>unsafe</span> {
+        <span class='ident'>drop</span>(<span class='ident'>a</span>.<span class='ident'>into_box</span>());
+    }
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>list</span>.<span class='ident'>iter</span>().<span class='ident'>map</span>(<span class='op'>|</span><span class='ident'>x</span><span class='op'>|</span> <span class='ident'>x</span>.<span class='ident'>value</span>.<span class='ident'>get</span>()).<span class='ident'>collect</span>::<span class='op'>&lt;</span><span class='ident'>Vec</span><span class='op'>&lt;</span>_<span class='op'>&gt;&gt;</span>(), [<span class='number'>4</span>, <span class='number'>2</span>]);
+
+    <span class='comment'>// We can drop the collection at any time, even if it still contains</span>
+    <span class='comment'>// objects. This is safe because the links in an object are only</span>
+    <span class='comment'>// accessed by an intrusive container. However this will leak the</span>
+    <span class='comment'>// objects in the list if they are not freed.</span>
+    <span class='ident'>drop</span>(<span class='ident'>list</span>);
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
+
+<h1 id='links-and-adaptors' class='section-header'><a href='#links-and-adaptors'>Links and adaptors</a></h1>
+<p>Intrusive collections track objects through links which are embedded within
+the objects themselves. It also allows a single object to be part of
+multiple intrusive collections at once by having multiple links in it.</p>
+
+<p>The relationship between an object and a link inside it is described by the
+<code>Adaptor</code> trait. Intrusive collections use an implementation of this trait
+to determine which link in an object should be used by the collection. In
+most cases you do not need to write an implementation manually: the
+<code>intrusive_adaptor!</code> macro will automatically generate the necessary code.</p>
+
+<p>For red-black trees, the adaptor must also implement the <code>TreeAdaptor</code> trait
+which allows a key to be extracted from an object. This key is then used to
+keep all elements in the tree in ascending order.</p>
+
+<pre class='rust rust-example-rendered'>
+<span class='attribute'>#[<span class='ident'>macro_use</span>]</span>
+<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>intrusive_collections</span>;
+<span class='kw'>use</span> <span class='ident'>intrusive_collections</span>::{<span class='ident'>IntrusiveRef</span>, <span class='ident'>LinkedListLink</span>, <span class='ident'>LinkedList</span>};
+<span class='kw'>use</span> <span class='ident'>intrusive_collections</span>::{<span class='ident'>RBTreeLink</span>, <span class='ident'>RBTree</span>, <span class='ident'>TreeAdaptor</span>};
+
+<span class='comment'>// This struct can be inside two lists and one tree simultaneously</span>
+<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Default</span>)]</span>
+<span class='kw'>struct</span> <span class='ident'>Test</span> {
+    <span class='ident'>link</span>: <span class='ident'>LinkedListLink</span>,
+    <span class='ident'>link2</span>: <span class='ident'>LinkedListLink</span>,
+    <span class='ident'>link3</span>: <span class='ident'>RBTreeLink</span>,
+    <span class='ident'>value</span>: <span class='ident'>i32</span>,
+}
+
+<span class='macro'>intrusive_adaptor</span><span class='macro'>!</span>(<span class='ident'>MyAdaptor</span> <span class='op'>=</span> <span class='ident'>Test</span> { <span class='ident'>link</span>: <span class='ident'>LinkedListLink</span> });
+<span class='macro'>intrusive_adaptor</span><span class='macro'>!</span>(<span class='ident'>MyAdaptor2</span> <span class='op'>=</span> <span class='ident'>Test</span> { <span class='ident'>link2</span>: <span class='ident'>LinkedListLink</span> });
+<span class='macro'>intrusive_adaptor</span><span class='macro'>!</span>(<span class='ident'>MyAdaptor3</span> <span class='op'>=</span> <span class='ident'>Test</span> { <span class='ident'>link3</span>: <span class='ident'>RBTreeLink</span> });
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span> <span class='ident'>TreeAdaptor</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>MyAdaptor3</span> {
+    <span class='kw'>type</span> <span class='ident'>Key</span> <span class='op'>=</span> <span class='ident'>i32</span>;
+    <span class='kw'>fn</span> <span class='ident'>get_key</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>x</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;a</span> <span class='ident'>Test</span>) <span class='op'>-&gt;</span> <span class='ident'>i32</span> { <span class='ident'>x</span>.<span class='ident'>value</span> }
+}
+
+<span class='kw'>fn</span> <span class='ident'>main</span>() {
+    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>a</span> <span class='op'>=</span> <span class='ident'>LinkedList</span>::<span class='ident'>new</span>(<span class='ident'>MyAdaptor</span>);
+    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>b</span> <span class='op'>=</span> <span class='ident'>LinkedList</span>::<span class='ident'>new</span>(<span class='ident'>MyAdaptor2</span>);
+    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>c</span> <span class='op'>=</span> <span class='ident'>RBTree</span>::<span class='ident'>new</span>(<span class='ident'>MyAdaptor3</span>);
+
+    <span class='kw'>let</span> <span class='ident'>test</span> <span class='op'>=</span> <span class='ident'>IntrusiveRef</span>::<span class='ident'>from_box</span>(<span class='ident'>Box</span>::<span class='ident'>new</span>(<span class='ident'>Test</span>::<span class='ident'>default</span>()));
+    <span class='ident'>a</span>.<span class='ident'>cursor_mut</span>().<span class='ident'>insert_after</span>(<span class='ident'>test</span>.<span class='ident'>clone</span>());
+    <span class='ident'>b</span>.<span class='ident'>cursor_mut</span>().<span class='ident'>insert_after</span>(<span class='ident'>test</span>.<span class='ident'>clone</span>());
+    <span class='ident'>c</span>.<span class='ident'>insert</span>(<span class='ident'>test</span>);
+}<a class='test-arrow' target='_blank' href=''>Run</a></pre>
+
+<h1 id='cursors' class='section-header'><a href='#cursors'>Cursors</a></h1>
+<p>Intrusive collections are manipulated using cursors. A cursor is similar to
+an iterator, except that it can freely seek back-and-forth, and can safely
+mutate the list during iteration. This is similar to how a C++ iterator
+works.</p>
+
+<p>A cursor views an intrusive collection as a circular list, with a special
+null object between the last and first elements of the collection. A cursor
+will either point to a valid object in the collection or to this special
+null object.</p>
+
+<p>Cursors come in two forms: <code>Cursor</code> and <code>CursorMut</code>. A <code>Cursor</code> gives a
+read-only view of a collection, but you are allowed to use multiple <code>Cursor</code>
+objects simultaneously on the same collection. On the other hand,
+<code>CursorMut</code> can be used to mutate the collection, but you may only use one
+of them at a time.</p>
+
+<h1 id='safety' class='section-header'><a href='#safety'>Safety</a></h1>
+<p>Guaranteeing safety in intrusive collections is tricky becauses they do
+not integrate well with Rust&#39;s ownership system, especially in cases where
+an object is a member of multiple intrusive collections. This library
+encapsulates all safety concerns using the <code>IntrusiveRef</code> type. An
+<code>IntrusiveRef</code> is a pointer type that provides several guarantees which must
+be maintained by unsafe code:</p>
+
+<ul>
+<li>An object managed by an <code>IntrusiveRef</code> must not be moved, dropped or
+accessed through a mutable reference as long as at least one
+<code>IntrusiveRef</code> is pointing to it.</li>
+</ul>
+
+<p>The only safe way to create a <code>IntrusiveRef</code> is by using the
+<code>IntrusiveRef::from_box</code> which takes ownership of a boxed object. An
+<code>IntrusiveRef</code> can also be created using the unsafe <code>IntrusiveRef::from_raw</code>
+function, however you must ensure that the invariants listed above are
+maintained.</p>
+
+<p>Destroying an object that is managed by an <code>IntrusiveRef</code> can only be done
+using unsafe code because you must manually ensure that the object is no
+longer a member of any intrusive collection and that there are no other
+<code>IntrusiveRef</code> pointing to it. The object managed by an <code>IntrusiveRef</code> can
+be retrieved through the <code>IntrusiveRef::into_box</code> and
+<code>IntrusiveRef::into_raw</code> functions.</p>
+
+<p>Note that while moving an object that is linked into a collection is
+disallowed, moving the collection itself is perfectly fine. This is possible
+because the linked objects do not contain any pointers back to the
+collection object itself.</p>
+
+<p>If an intrusive collection is dropped while still containing objects then
+the links in those objects are not reset. Attempting to insert one of these
+objects into another intrusive collection will fail unless its link is
+manually reset by calling <code>unsafe_unlink</code> on it.</p>
+</div><h2 id='reexports' class='section-header'><a href="#reexports">Reexports</a></h2>
+<table><tr><td><code>pub use singly_linked_list::<a class='struct' href='../intrusive_collections/singly_linked_list/struct.SinglyLinkedList.html' title='intrusive_collections::singly_linked_list::SinglyLinkedList'>SinglyLinkedList</a>;</code></td></tr><tr><td><code>pub use singly_linked_list::<a class='struct' href='../intrusive_collections/singly_linked_list/struct.Link.html' title='intrusive_collections::singly_linked_list::Link'>Link</a> as SinglyLinkedListLink;</code></td></tr><tr><td><code>pub use linked_list::<a class='struct' href='../intrusive_collections/linked_list/struct.LinkedList.html' title='intrusive_collections::linked_list::LinkedList'>LinkedList</a>;</code></td></tr><tr><td><code>pub use linked_list::<a class='struct' href='../intrusive_collections/linked_list/struct.Link.html' title='intrusive_collections::linked_list::Link'>Link</a> as LinkedListLink;</code></td></tr><tr><td><code>pub use rbtree::{<a class='struct' href='../intrusive_collections/rbtree/struct.RBTree.html' title='intrusive_collections::rbtree::RBTree'>RBTree</a>, <a class='trait' href='../intrusive_collections/rbtree/trait.TreeAdaptor.html' title='intrusive_collections::rbtree::TreeAdaptor'>TreeAdaptor</a>};</code></td></tr><tr><td><code>pub use rbtree::<a class='struct' href='../intrusive_collections/rbtree/struct.Link.html' title='intrusive_collections::rbtree::Link'>Link</a> as RBTreeLink;</code></td></tr></table><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class='mod' href='linked_list/index.html'
+                                  title='intrusive_collections::linked_list'>linked_list</a></td>
+                           <td class='docblock-short'>
+                                <p>Intrusive doubly-linked list.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='mod' href='rbtree/index.html'
+                                  title='intrusive_collections::rbtree'>rbtree</a></td>
+                           <td class='docblock-short'>
+                                <p>Intrusive red-black tree.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='mod' href='singly_linked_list/index.html'
+                                  title='intrusive_collections::singly_linked_list'>singly_linked_list</a></td>
+                           <td class='docblock-short'>
+                                <p>Intrusive singly-linked list.</p>
+                           </td>
+                       </tr></table><h2 id='macros' class='section-header'><a href="#macros">Macros</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class='macro' href='macro.container_of.html'
+                                  title='intrusive_collections::container_of'>container_of</a></td>
+                           <td class='docblock-short'>
+                                <p>Unsafe macro to get a raw pointer to an outer object from a pointer to one
+of its fields.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='macro' href='macro.intrusive_adaptor.html'
+                                  title='intrusive_collections::intrusive_adaptor'>intrusive_adaptor</a></td>
+                           <td class='docblock-short'>
+                                <p>Macro to generate an empty type implementing the Adaptor trait for the given
+container object and field.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='macro' href='macro.offset_of.html'
+                                  title='intrusive_collections::offset_of'>offset_of</a></td>
+                           <td class='docblock-short'>
+                                <p>Macro to get the offset of a struct field in bytes from the address of the
+struct.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='macro' href='macro.offset_of_unsafe.html'
+                                  title='intrusive_collections::offset_of_unsafe'>offset_of_unsafe</a></td>
+                           <td class='docblock-short'>
+                                <p>Macro to get the offset of a struct field in bytes from the address of the
+struct.</p>
+                           </td>
+                       </tr></table><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class='struct' href='struct.IntrusiveRef.html'
+                                  title='intrusive_collections::IntrusiveRef'>IntrusiveRef</a></td>
+                           <td class='docblock-short'>
+                                <p>Pointer to an object that may be part of one or more intrusive colllections</p>
+                           </td>
+                       </tr></table><h2 id='enums' class='section-header'><a href="#enums">Enums</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class='enum' href='enum.Bound.html'
+                                  title='intrusive_collections::Bound'>Bound</a></td>
+                           <td class='docblock-short'>
+                                <p>An endpoint of a range of keys.</p>
+                           </td>
+                       </tr></table><h2 id='traits' class='section-header'><a href="#traits">Traits</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class='trait' href='trait.Adaptor.html'
+                                  title='intrusive_collections::Adaptor'>Adaptor</a></td>
+                           <td class='docblock-short'>
+                                <p>Trait representing a mapping between an object and an intrusive link type
+which is a member of that object.</p>
+                           </td>
+                       </tr></table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "intrusive_collections";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../jquery.js"></script>
+    <script src="../main.js"></script>
+    <script src="../extra.js"></script>
+    <script defer src="../search-index.js"></script>
+</body>
+</html>

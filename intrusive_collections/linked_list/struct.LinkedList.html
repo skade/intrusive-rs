@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `LinkedList` struct in crate `intrusive_collections`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, LinkedList">
+
+    <title>intrusive_collections::linked_list::LinkedList - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>intrusive_collections</a>::<wbr><a href='index.html'>linked_list</a></p><script>window.sidebarCurrent = {name: 'LinkedList', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../index.html'>intrusive_collections</a>::<wbr><a href='index.html'>linked_list</a>::<wbr><a class='struct' href=''>LinkedList</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-363' class='srclink' href='../../src/intrusive_collections/src/linked_list.rs.html#602-606' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct LinkedList&lt;A:&nbsp;<a class='trait' href='../../intrusive_collections/trait.Adaptor.html' title='intrusive_collections::Adaptor'>Adaptor</a>&lt;<a class='struct' href='../../intrusive_collections/linked_list/struct.Link.html' title='intrusive_collections::linked_list::Link'>Link</a>&gt;&gt; { /* fields omitted */ }</pre><div class='docblock'><p>An intrusive doubly-linked list.</p>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl&lt;A:&nbsp;<a class='trait' href='../../intrusive_collections/trait.Adaptor.html' title='intrusive_collections::Adaptor'>Adaptor</a>&lt;<a class='struct' href='../../intrusive_collections/linked_list/struct.Link.html' title='intrusive_collections::linked_list::Link'>Link</a>&gt;&gt; <a class='struct' href='../../intrusive_collections/linked_list/struct.LinkedList.html' title='intrusive_collections::linked_list::LinkedList'>LinkedList</a>&lt;A&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a id='src-368' class='srclink' href='../../src/intrusive_collections/src/linked_list.rs.html#608-840' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.new' class='method'><span id='new.v' class='invisible'><code>const fn <a href='#method.new' class='fnname'>new</a>(adaptor: A) -&gt; <a class='struct' href='../../intrusive_collections/linked_list/struct.LinkedList.html' title='intrusive_collections::linked_list::LinkedList'>LinkedList</a>&lt;A&gt;</code></span></h4>
+<div class='docblock'><p>Creates an empty <code>LinkedList</code>.</p>
+</div><h4 id='method.is_empty' class='method'><span id='is_empty.v' class='invisible'><code>fn <a href='#method.is_empty' class='fnname'>is_empty</a>(&amp;self) -&gt; bool</code></span></h4>
+<div class='docblock'><p>Returns <code>true if the</code>LinkedList` is empty.</p>
+</div><h4 id='method.cursor' class='method'><span id='cursor.v' class='invisible'><code>fn <a href='#method.cursor' class='fnname'>cursor</a>(&amp;self) -&gt; <a class='struct' href='../../intrusive_collections/linked_list/struct.Cursor.html' title='intrusive_collections::linked_list::Cursor'>Cursor</a>&lt;A&gt;</code></span></h4>
+<div class='docblock'><p>Returns a null <code>Cursor</code> for this list.</p>
+</div><h4 id='method.cursor_mut' class='method'><span id='cursor_mut.v' class='invisible'><code>fn <a href='#method.cursor_mut' class='fnname'>cursor_mut</a>(&amp;mut self) -&gt; <a class='struct' href='../../intrusive_collections/linked_list/struct.CursorMut.html' title='intrusive_collections::linked_list::CursorMut'>CursorMut</a>&lt;A&gt;</code></span></h4>
+<div class='docblock'><p>Returns a null <code>CursorMut</code> for this list.</p>
+</div><h4 id='method.cursor_from_ptr' class='method'><span id='cursor_from_ptr.v' class='invisible'><code>unsafe fn <a href='#method.cursor_from_ptr' class='fnname'>cursor_from_ptr</a>(&amp;self, ptr: *const A::Container) -&gt; <a class='struct' href='../../intrusive_collections/linked_list/struct.Cursor.html' title='intrusive_collections::linked_list::Cursor'>Cursor</a>&lt;A&gt;</code></span></h4>
+<div class='docblock'><p>Creates a <code>Cursor</code> from a pointer to an element.</p>
+
+<h1 id='safety' class='section-header'><a href='#safety'>Safety</a></h1>
+<p><code>ptr</code> must be a pointer to an object that is part of this list.</p>
+</div><h4 id='method.cursor_mut_from_ptr' class='method'><span id='cursor_mut_from_ptr.v' class='invisible'><code>unsafe fn <a href='#method.cursor_mut_from_ptr' class='fnname'>cursor_mut_from_ptr</a>(&amp;mut self,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ptr: *const A::Container)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&gt; <a class='struct' href='../../intrusive_collections/linked_list/struct.CursorMut.html' title='intrusive_collections::linked_list::CursorMut'>CursorMut</a>&lt;A&gt;</code></span></h4>
+<div class='docblock'><p>Creates a <code>CursorMut</code> from a pointer to an element.</p>
+
+<h1 id='safety-1' class='section-header'><a href='#safety-1'>Safety</a></h1>
+<p><code>ptr</code> must be a pointer to an object that is part of this list.</p>
+</div><h4 id='method.front' class='method'><span id='front.v' class='invisible'><code>fn <a href='#method.front' class='fnname'>front</a>(&amp;self) -&gt; <a class='struct' href='../../intrusive_collections/linked_list/struct.Cursor.html' title='intrusive_collections::linked_list::Cursor'>Cursor</a>&lt;A&gt;</code></span></h4>
+<div class='docblock'><p>Returns a <code>Cursor</code> pointing to the first element of the list. If the
+list is empty then a null cursor is returned.</p>
+</div><h4 id='method.front_mut' class='method'><span id='front_mut.v' class='invisible'><code>fn <a href='#method.front_mut' class='fnname'>front_mut</a>(&amp;mut self) -&gt; <a class='struct' href='../../intrusive_collections/linked_list/struct.CursorMut.html' title='intrusive_collections::linked_list::CursorMut'>CursorMut</a>&lt;A&gt;</code></span></h4>
+<div class='docblock'><p>Returns a <code>CursorMut</code> pointing to the first element of the list. If the
+the list is empty then a null cursor is returned.</p>
+</div><h4 id='method.back' class='method'><span id='back.v' class='invisible'><code>fn <a href='#method.back' class='fnname'>back</a>(&amp;self) -&gt; <a class='struct' href='../../intrusive_collections/linked_list/struct.Cursor.html' title='intrusive_collections::linked_list::Cursor'>Cursor</a>&lt;A&gt;</code></span></h4>
+<div class='docblock'><p>Returns a <code>Cursor</code> pointing to the last element of the list. If the list
+is empty then a null cursor is returned.</p>
+</div><h4 id='method.back_mut' class='method'><span id='back_mut.v' class='invisible'><code>fn <a href='#method.back_mut' class='fnname'>back_mut</a>(&amp;mut self) -&gt; <a class='struct' href='../../intrusive_collections/linked_list/struct.CursorMut.html' title='intrusive_collections::linked_list::CursorMut'>CursorMut</a>&lt;A&gt;</code></span></h4>
+<div class='docblock'><p>Returns a <code>CursorMut</code> pointing to the last element of the list. If the
+list is empty then a null cursor is returned.</p>
+</div><h4 id='method.iter' class='method'><span id='iter.v' class='invisible'><code>fn <a href='#method.iter' class='fnname'>iter</a>(&amp;self) -&gt; <a class='struct' href='../../intrusive_collections/linked_list/struct.Iter.html' title='intrusive_collections::linked_list::Iter'>Iter</a>&lt;A&gt;</code></span></h4>
+<div class='docblock'><p>Gets an iterator over the objects in the <code>LinkedList</code>.</p>
+</div><h4 id='method.drain' class='method'><span id='drain.v' class='invisible'><code>fn <a href='#method.drain' class='fnname'>drain</a>&lt;F&gt;(&amp;mut self, f: F) <span class='where'>where F: <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.FnMut.html' title='core::ops::FnMut'>FnMut</a>(<a class='struct' href='../../intrusive_collections/struct.IntrusiveRef.html' title='intrusive_collections::IntrusiveRef'>IntrusiveRef</a>&lt;A::Container&gt;)</span></code></span></h4>
+<div class='docblock'><p>Calls the given function for each element in the <code>LinkedList</code> before
+removing it from the list.</p>
+
+<p>This will unlink all objects currently in the list.</p>
+
+<p>If the given function panics then all elements in the <code>LinkedList</code> will
+still be unlinked, but the function will not be called for any elements
+after the one that panicked.</p>
+</div><h4 id='method.clear' class='method'><span id='clear.v' class='invisible'><code>fn <a href='#method.clear' class='fnname'>clear</a>(&amp;mut self)</code></span></h4>
+<div class='docblock'><p>Removes all elements from the <code>LinkedList</code>.</p>
+
+<p>This will unlink all object currently in the list, which requires
+iterating through all elements in the <code>LinkedList</code>.</p>
+</div><h4 id='method.fast_clear' class='method'><span id='fast_clear.v' class='invisible'><code>fn <a href='#method.fast_clear' class='fnname'>fast_clear</a>(&amp;mut self)</code></span></h4>
+<div class='docblock'><p>Empties the <code>LinkedList</code> without unlinking objects in it.</p>
+
+<p>Since this does not unlink any objects, any attempts to link these
+objects into another <code>LinkedList</code> will fail but will not cause any
+memory unsafety. To unlink those objects manually, you must call the
+<code>unsafe_unlink</code> function on them.</p>
+
+<p>This is the only function that can be safely called after an object has
+been moved or dropped while still being linked into this <code>LinkedList</code>.</p>
+</div><h4 id='method.take' class='method'><span id='take.v' class='invisible'><code>fn <a href='#method.take' class='fnname'>take</a>(&amp;mut self) -&gt; <a class='struct' href='../../intrusive_collections/linked_list/struct.LinkedList.html' title='intrusive_collections::linked_list::LinkedList'>LinkedList</a>&lt;A&gt; <span class='where'>where A: <a class='trait' href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a></span></code></span></h4>
+<div class='docblock'><p>Takes all the elements out of the <code>LinkedList</code>, leaving it empty. The
+taken elements are returned as a new <code>LinkedList</code>.</p>
+</div><h4 id='method.push_front' class='method'><span id='push_front.v' class='invisible'><code>fn <a href='#method.push_front' class='fnname'>push_front</a>(&amp;mut self, val: <a class='struct' href='../../intrusive_collections/struct.IntrusiveRef.html' title='intrusive_collections::IntrusiveRef'>IntrusiveRef</a>&lt;A::Container&gt;)</code></span></h4>
+<div class='docblock'><p>Inserts a new element at the start of the <code>LinkedList</code>.</p>
+</div><h4 id='method.push_back' class='method'><span id='push_back.v' class='invisible'><code>fn <a href='#method.push_back' class='fnname'>push_back</a>(&amp;mut self, val: <a class='struct' href='../../intrusive_collections/struct.IntrusiveRef.html' title='intrusive_collections::IntrusiveRef'>IntrusiveRef</a>&lt;A::Container&gt;)</code></span></h4>
+<div class='docblock'><p>Inserts a new element at the end of the <code>LinkedList</code>.</p>
+</div><h4 id='method.pop_front' class='method'><span id='pop_front.v' class='invisible'><code>fn <a href='#method.pop_front' class='fnname'>pop_front</a>(&amp;mut self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../../intrusive_collections/struct.IntrusiveRef.html' title='intrusive_collections::IntrusiveRef'>IntrusiveRef</a>&lt;A::Container&gt;&gt;</code></span></h4>
+<div class='docblock'><p>Removes the first element of the <code>LinkedList</code>.</p>
+
+<p>This returns <code>None</code> if the <code>LinkedList</code> is empty.</p>
+</div><h4 id='method.pop_back' class='method'><span id='pop_back.v' class='invisible'><code>fn <a href='#method.pop_back' class='fnname'>pop_back</a>(&amp;mut self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../../intrusive_collections/struct.IntrusiveRef.html' title='intrusive_collections::IntrusiveRef'>IntrusiveRef</a>&lt;A::Container&gt;&gt;</code></span></h4>
+<div class='docblock'><p>Removes the last element of the <code>LinkedList</code>.</p>
+
+<p>This returns <code>None</code> if the <code>LinkedList</code> is empty.</p>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl&lt;A:&nbsp;<a class='trait' href='../../intrusive_collections/trait.Adaptor.html' title='intrusive_collections::Adaptor'>Adaptor</a>&lt;<a class='struct' href='../../intrusive_collections/linked_list/struct.Link.html' title='intrusive_collections::linked_list::Link'>Link</a>&gt; + <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html' title='core::marker::Sync'>Sync</a>&gt; <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html' title='core::marker::Sync'>Sync</a> for <a class='struct' href='../../intrusive_collections/linked_list/struct.LinkedList.html' title='intrusive_collections::linked_list::LinkedList'>LinkedList</a>&lt;A&gt; <span class='where'>where A::Container: <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html' title='core::marker::Sync'>Sync</a></span></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-431' class='srclink' href='../../src/intrusive_collections/src/linked_list.rs.html#843' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'></div><h3 class='impl'><span class='in-band'><code>impl&lt;A:&nbsp;<a class='trait' href='../../intrusive_collections/trait.Adaptor.html' title='intrusive_collections::Adaptor'>Adaptor</a>&lt;<a class='struct' href='../../intrusive_collections/linked_list/struct.Link.html' title='intrusive_collections::linked_list::Link'>Link</a>&gt; + <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Send.html' title='core::marker::Send'>Send</a>&gt; <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Send.html' title='core::marker::Send'>Send</a> for <a class='struct' href='../../intrusive_collections/linked_list/struct.LinkedList.html' title='intrusive_collections::linked_list::LinkedList'>LinkedList</a>&lt;A&gt; <span class='where'>where A::Container: <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Send.html' title='core::marker::Send'>Send</a> + <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html' title='core::marker::Sync'>Sync</a></span></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-433' class='srclink' href='../../src/intrusive_collections/src/linked_list.rs.html#846' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'></div><h3 class='impl'><span class='in-band'><code>impl&lt;'a, A:&nbsp;<a class='trait' href='../../intrusive_collections/trait.Adaptor.html' title='intrusive_collections::Adaptor'>Adaptor</a>&lt;<a class='struct' href='../../intrusive_collections/linked_list/struct.Link.html' title='intrusive_collections::linked_list::Link'>Link</a>&gt; + 'a&gt; <a class='trait' href='https://doc.rust-lang.org/nightly/core/iter/traits/trait.IntoIterator.html' title='core::iter::traits::IntoIterator'>IntoIterator</a> for &amp;'a <a class='struct' href='../../intrusive_collections/linked_list/struct.LinkedList.html' title='intrusive_collections::linked_list::LinkedList'>LinkedList</a>&lt;A&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a id='src-435' class='srclink' href='../../src/intrusive_collections/src/linked_list.rs.html#848-856' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='associatedtype.Item' class='type'><span id='Item.t' class='invisible'><code>type <a href='https://doc.rust-lang.org/nightly/core/iter/traits/trait.IntoIterator.html#associatedtype.Item' class='type'>Item</a> = &amp;'a A::Container</code></span></h4>
+<div class='docblock'><p>The type of the elements being iterated over.</p>
+</div><h4 id='associatedtype.IntoIter' class='type'><span id='IntoIter.t' class='invisible'><code>type <a href='https://doc.rust-lang.org/nightly/core/iter/traits/trait.IntoIterator.html#associatedtype.IntoIter' class='type'>IntoIter</a> = <a class='struct' href='../../intrusive_collections/linked_list/struct.Iter.html' title='intrusive_collections::linked_list::Iter'>Iter</a>&lt;'a, A&gt;</code></span></h4>
+<div class='docblock'><p>Which kind of iterator are we turning this into?</p>
+</div><h4 id='method.into_iter' class='method'><span id='into_iter.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/iter/traits/trait.IntoIterator.html#tymethod.into_iter' class='fnname'>into_iter</a>(self) -&gt; <a class='struct' href='../../intrusive_collections/linked_list/struct.Iter.html' title='intrusive_collections::linked_list::Iter'>Iter</a>&lt;'a, A&gt;</code></span></h4>
+<div class='docblock'><p>Creates an iterator from a value. <a href="https://doc.rust-lang.org/nightly/core/iter/traits/trait.IntoIterator.html#tymethod.into_iter">Read more</a></p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl&lt;A:&nbsp;<a class='trait' href='../../intrusive_collections/trait.Adaptor.html' title='intrusive_collections::Adaptor'>Adaptor</a>&lt;<a class='struct' href='../../intrusive_collections/linked_list/struct.Link.html' title='intrusive_collections::linked_list::Link'>Link</a>&gt; + <a class='trait' href='https://doc.rust-lang.org/nightly/core/default/trait.Default.html' title='core::default::Default'>Default</a>&gt; <a class='trait' href='https://doc.rust-lang.org/nightly/core/default/trait.Default.html' title='core::default::Default'>Default</a> for <a class='struct' href='../../intrusive_collections/linked_list/struct.LinkedList.html' title='intrusive_collections::linked_list::LinkedList'>LinkedList</a>&lt;A&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a id='src-442' class='srclink' href='../../src/intrusive_collections/src/linked_list.rs.html#858-862' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.default' class='method'><span id='default.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/default/trait.Default.html#tymethod.default' class='fnname'>default</a>() -&gt; <a class='struct' href='../../intrusive_collections/linked_list/struct.LinkedList.html' title='intrusive_collections::linked_list::LinkedList'>LinkedList</a>&lt;A&gt;</code></span></h4>
+<div class='docblock'><p>Returns the &quot;default value&quot; for a type. <a href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html#tymethod.default">Read more</a></p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl&lt;A:&nbsp;<a class='trait' href='../../intrusive_collections/trait.Adaptor.html' title='intrusive_collections::Adaptor'>Adaptor</a>&lt;<a class='struct' href='../../intrusive_collections/linked_list/struct.Link.html' title='intrusive_collections::linked_list::Link'>Link</a>&gt;&gt; <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='struct' href='../../intrusive_collections/linked_list/struct.LinkedList.html' title='intrusive_collections::linked_list::LinkedList'>LinkedList</a>&lt;A&gt; <span class='where'>where A::Container: <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a></span></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-445' class='srclink' href='../../src/intrusive_collections/src/linked_list.rs.html#864-870' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.fmt' class='method'><span id='fmt.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, f: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></span></h4>
+<div class='docblock'><p>Formats the value using the given formatter.</p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "intrusive_collections";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    <script src="../../extra.js"></script>
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `CursorMut` struct in crate `intrusive_collections`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, CursorMut">
+
+    <title>intrusive_collections::rbtree::CursorMut - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>intrusive_collections</a>::<wbr><a href='index.html'>rbtree</a></p><script>window.sidebarCurrent = {name: 'CursorMut', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../index.html'>intrusive_collections</a>::<wbr><a href='index.html'>rbtree</a>::<wbr><a class='struct' href=''>CursorMut</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-626' class='srclink' href='../../src/intrusive_collections/src/rbtree.rs.html#651-654' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct CursorMut&lt;'a, A:&nbsp;for&lt;'b&gt; <a class='trait' href='../../intrusive_collections/rbtree/trait.TreeAdaptor.html' title='intrusive_collections::rbtree::TreeAdaptor'>TreeAdaptor</a>&lt;'b&gt; + 'a&gt; { /* fields omitted */ }</pre><div class='docblock'><p>A cursor which provides mutable access to a <code>RBTree</code>.</p>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl&lt;'a, A:&nbsp;for&lt;'b&gt; <a class='trait' href='../../intrusive_collections/rbtree/trait.TreeAdaptor.html' title='intrusive_collections::rbtree::TreeAdaptor'>TreeAdaptor</a>&lt;'b&gt; + 'a&gt; <a class='struct' href='../../intrusive_collections/rbtree/struct.CursorMut.html' title='intrusive_collections::rbtree::CursorMut'>CursorMut</a>&lt;'a, A&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a id='src-632' class='srclink' href='../../src/intrusive_collections/src/rbtree.rs.html#656-838' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.is_null' class='method'><span id='is_null.v' class='invisible'><code>fn <a href='#method.is_null' class='fnname'>is_null</a>(&amp;self) -&gt; bool</code></span></h4>
+<div class='docblock'><p>Checks if the cursor is currently pointing to the null object.</p>
+</div><h4 id='method.get' class='method'><span id='get.v' class='invisible'><code>fn <a href='#method.get' class='fnname'>get</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;&amp;'a A::Container&gt;</code></span></h4>
+<div class='docblock'><p>Returns a reference to the object that the cursor is currently
+pointing to.</p>
+
+<p>This returns None if the cursor is currently pointing to the null
+object.</p>
+</div><h4 id='method.as_cursor' class='method'><span id='as_cursor.v' class='invisible'><code>fn <a href='#method.as_cursor' class='fnname'>as_cursor</a>(&amp;self) -&gt; <a class='struct' href='../../intrusive_collections/rbtree/struct.Cursor.html' title='intrusive_collections::rbtree::Cursor'>Cursor</a>&lt;A&gt;</code></span></h4>
+<div class='docblock'><p>Returns a read-only cursor pointing to the current element.</p>
+
+<p>The lifetime of the returned <code>Cursor</code> is bound to that of the
+<code>CursorMut</code>, which means it cannot outlive the <code>CursorMut</code> and that the
+<code>CursorMut</code> is frozen for the lifetime of the <code>Cursor</code>.</p>
+</div><h4 id='method.move_next' class='method'><span id='move_next.v' class='invisible'><code>fn <a href='#method.move_next' class='fnname'>move_next</a>(&amp;mut self)</code></span></h4>
+<div class='docblock'><p>Moves the cursor to the next element of the <code>RBTree</code>.</p>
+
+<p>If the cursor is pointer to the null object then this will move it to
+the first element of the <code>RBTree</code>. If it is pointing to the last
+element of the <code>RBTree</code> then this will move it to the null object.</p>
+</div><h4 id='method.move_prev' class='method'><span id='move_prev.v' class='invisible'><code>fn <a href='#method.move_prev' class='fnname'>move_prev</a>(&amp;mut self)</code></span></h4>
+<div class='docblock'><p>Moves the cursor to the previous element of the <code>RBTree</code>.</p>
+
+<p>If the cursor is pointer to the null object then this will move it to
+the last element of the <code>RBTree</code>. If it is pointing to the first
+element of the <code>RBTree</code> then this will move it to the null object.</p>
+</div><h4 id='method.remove' class='method'><span id='remove.v' class='invisible'><code>fn <a href='#method.remove' class='fnname'>remove</a>(&amp;mut self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../../intrusive_collections/struct.IntrusiveRef.html' title='intrusive_collections::IntrusiveRef'>IntrusiveRef</a>&lt;A::Container&gt;&gt;</code></span></h4>
+<div class='docblock'><p>Removes the current element from the <code>RBTree</code>.</p>
+
+<p>A pointer to the element that was removed is returned, and the cursor is
+moved to point to the next element in the <code>RBTree</code>.</p>
+
+<p>If the cursor is currently pointing to the null object then no element
+is removed and <code>None</code> is returned.</p>
+</div><h4 id='method.replace_with' class='method'><span id='replace_with.v' class='invisible'><code>fn <a href='#method.replace_with' class='fnname'>replace_with</a>(&amp;mut self,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; val: <a class='struct' href='../../intrusive_collections/struct.IntrusiveRef.html' title='intrusive_collections::IntrusiveRef'>IntrusiveRef</a>&lt;A::Container&gt;)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../../intrusive_collections/struct.IntrusiveRef.html' title='intrusive_collections::IntrusiveRef'>IntrusiveRef</a>&lt;A::Container&gt;, <a class='struct' href='../../intrusive_collections/struct.IntrusiveRef.html' title='intrusive_collections::IntrusiveRef'>IntrusiveRef</a>&lt;A::Container&gt;&gt;</code></span></h4>
+<div class='docblock'><p>Removes the current element from the <code>RBTree</code> and inserts another
+object in its place.</p>
+
+<p>A pointer to the element that was removed is returned, and the cursor is
+modified to point to the newly added element.</p>
+
+<p>When using this function you must ensure that the elements in the
+collection are maintained in increasing order. Failure to do this may
+lead to <code>find</code>, <code>upper_bound</code>, <code>lower_bound</code> and <code>range</code> returning
+incorrect results.</p>
+
+<p>If the cursor is currently pointing to the null object then an error is
+returned containing the given <code>val</code> parameter.</p>
+
+<h1 id='panics' class='section-header'><a href='#panics'>Panics</a></h1>
+<p>Panics if the new element is already linked to a different intrusive
+collection.</p>
+</div><h4 id='method.insert_after' class='method'><span id='insert_after.v' class='invisible'><code>fn <a href='#method.insert_after' class='fnname'>insert_after</a>(&amp;mut self, val: <a class='struct' href='../../intrusive_collections/struct.IntrusiveRef.html' title='intrusive_collections::IntrusiveRef'>IntrusiveRef</a>&lt;A::Container&gt;)</code></span></h4>
+<div class='docblock'><p>Inserts a new element into the <code>RBTree</code> after the current one.</p>
+
+<p>When using this function you must ensure that the elements in the
+collection are maintained in increasing order. Failure to do this may
+lead to <code>find</code>, <code>upper_bound</code>, <code>lower_bound</code> and <code>range</code> returning
+incorrect results.</p>
+
+<p>If the cursor is pointing at the null object then the new element is
+inserted at the start of the <code>RBTree</code>.</p>
+
+<h1 id='panics-1' class='section-header'><a href='#panics-1'>Panics</a></h1>
+<p>Panics if the new element is already linked to a different intrusive
+collection.</p>
+</div><h4 id='method.insert_before' class='method'><span id='insert_before.v' class='invisible'><code>fn <a href='#method.insert_before' class='fnname'>insert_before</a>(&amp;mut self, val: <a class='struct' href='../../intrusive_collections/struct.IntrusiveRef.html' title='intrusive_collections::IntrusiveRef'>IntrusiveRef</a>&lt;A::Container&gt;)</code></span></h4>
+<div class='docblock'><p>Inserts a new element into the <code>RBTree</code> before the current one.</p>
+
+<p>When using this function you must ensure that the elements in the
+collection are maintained in increasing order. Failure to do this may
+lead to <code>find</code>, <code>upper_bound</code>, <code>lower_bound</code> and <code>range</code> returning
+incorrect results.</p>
+
+<p>If the cursor is pointing at the null object then the new element is
+inserted at the end of the <code>RBTree</code>.</p>
+
+<h1 id='panics-2' class='section-header'><a href='#panics-2'>Panics</a></h1>
+<p>Panics if the new element is already linked to a different intrusive
+collection.</p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "intrusive_collections";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    <script src="../../extra.js"></script>
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+(function() {var implementors = {};
+implementors["intrusive_collections"] = ["impl&lt;'a, A:&nbsp;<a class='trait' href='intrusive_collections/trait.Adaptor.html' title='intrusive_collections::Adaptor'>Adaptor</a>&lt;<a class='struct' href='intrusive_collections/singly_linked_list/struct.Link.html' title='intrusive_collections::singly_linked_list::Link'>Link</a>&gt; + 'a&gt; <a class='trait' href='https://doc.rust-lang.org/nightly/core/iter/traits/trait.IntoIterator.html' title='core::iter::traits::IntoIterator'>IntoIterator</a> for &amp;'a <a class='struct' href='intrusive_collections/singly_linked_list/struct.SinglyLinkedList.html' title='intrusive_collections::singly_linked_list::SinglyLinkedList'>SinglyLinkedList</a>&lt;A&gt;","impl&lt;'a, A:&nbsp;<a class='trait' href='intrusive_collections/trait.Adaptor.html' title='intrusive_collections::Adaptor'>Adaptor</a>&lt;<a class='struct' href='intrusive_collections/linked_list/struct.Link.html' title='intrusive_collections::linked_list::Link'>Link</a>&gt; + 'a&gt; <a class='trait' href='https://doc.rust-lang.org/nightly/core/iter/traits/trait.IntoIterator.html' title='core::iter::traits::IntoIterator'>IntoIterator</a> for &amp;'a <a class='struct' href='intrusive_collections/linked_list/struct.LinkedList.html' title='intrusive_collections::linked_list::LinkedList'>LinkedList</a>&lt;A&gt;","impl&lt;'a, A:&nbsp;for&lt;'b&gt; <a class='trait' href='intrusive_collections/rbtree/trait.TreeAdaptor.html' title='intrusive_collections::rbtree::TreeAdaptor'>TreeAdaptor</a>&lt;'b&gt; + 'a&gt; <a class='trait' href='https://doc.rust-lang.org/nightly/core/iter/traits/trait.IntoIterator.html' title='core::iter::traits::IntoIterator'>IntoIterator</a> for &amp;'a <a class='struct' href='intrusive_collections/rbtree/struct.RBTree.html' title='intrusive_collections::rbtree::RBTree'>RBTree</a>&lt;A&gt;",];
+
+            if (window.register_implementors) {
+                window.register_implementors(implementors);
+            } else {
+                window.pending_implementors = implementors;
+            }
+        
+})()

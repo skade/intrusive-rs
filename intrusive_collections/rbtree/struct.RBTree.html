@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `RBTree` struct in crate `intrusive_collections`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, RBTree">
+
+    <title>intrusive_collections::rbtree::RBTree - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>intrusive_collections</a>::<wbr><a href='index.html'>rbtree</a></p><script>window.sidebarCurrent = {name: 'RBTree', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../index.html'>intrusive_collections</a>::<wbr><a href='index.html'>rbtree</a>::<wbr><a class='struct' href=''>RBTree</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-663' class='srclink' href='../../src/intrusive_collections/src/rbtree.rs.html#845-848' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct RBTree&lt;A:&nbsp;for&lt;'a&gt; <a class='trait' href='../../intrusive_collections/rbtree/trait.TreeAdaptor.html' title='intrusive_collections::rbtree::TreeAdaptor'>TreeAdaptor</a>&lt;'a&gt;&gt; { /* fields omitted */ }</pre><div class='docblock'><p>An intrusive red-black tree.</p>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl&lt;A:&nbsp;for&lt;'a&gt; <a class='trait' href='../../intrusive_collections/rbtree/trait.TreeAdaptor.html' title='intrusive_collections::rbtree::TreeAdaptor'>TreeAdaptor</a>&lt;'a&gt;&gt; <a class='struct' href='../../intrusive_collections/rbtree/struct.RBTree.html' title='intrusive_collections::rbtree::RBTree'>RBTree</a>&lt;A&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a id='src-668' class='srclink' href='../../src/intrusive_collections/src/rbtree.rs.html#850-1369' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.new' class='method'><span id='new.v' class='invisible'><code>const fn <a href='#method.new' class='fnname'>new</a>(adaptor: A) -&gt; <a class='struct' href='../../intrusive_collections/rbtree/struct.RBTree.html' title='intrusive_collections::rbtree::RBTree'>RBTree</a>&lt;A&gt;</code></span></h4>
+<div class='docblock'><p>Creates an empty <code>RBTree</code>.</p>
+</div><h4 id='method.is_empty' class='method'><span id='is_empty.v' class='invisible'><code>fn <a href='#method.is_empty' class='fnname'>is_empty</a>(&amp;self) -&gt; bool</code></span></h4>
+<div class='docblock'><p>Returns <code>true if the</code>RBTree` is empty.</p>
+</div><h4 id='method.cursor' class='method'><span id='cursor.v' class='invisible'><code>fn <a href='#method.cursor' class='fnname'>cursor</a>(&amp;self) -&gt; <a class='struct' href='../../intrusive_collections/rbtree/struct.Cursor.html' title='intrusive_collections::rbtree::Cursor'>Cursor</a>&lt;A&gt;</code></span></h4>
+<div class='docblock'><p>Returns a null <code>Cursor</code> for this tree.</p>
+</div><h4 id='method.cursor_mut' class='method'><span id='cursor_mut.v' class='invisible'><code>fn <a href='#method.cursor_mut' class='fnname'>cursor_mut</a>(&amp;mut self) -&gt; <a class='struct' href='../../intrusive_collections/rbtree/struct.CursorMut.html' title='intrusive_collections::rbtree::CursorMut'>CursorMut</a>&lt;A&gt;</code></span></h4>
+<div class='docblock'><p>Returns a null <code>CursorMut</code> for this tree.</p>
+</div><h4 id='method.cursor_from_ptr' class='method'><span id='cursor_from_ptr.v' class='invisible'><code>unsafe fn <a href='#method.cursor_from_ptr' class='fnname'>cursor_from_ptr</a>(&amp;self, ptr: *const A::Container) -&gt; <a class='struct' href='../../intrusive_collections/rbtree/struct.Cursor.html' title='intrusive_collections::rbtree::Cursor'>Cursor</a>&lt;A&gt;</code></span></h4>
+<div class='docblock'><p>Creates a <code>Cursor</code> from a pointer to an element.</p>
+
+<h1 id='safety' class='section-header'><a href='#safety'>Safety</a></h1>
+<p><code>ptr</code> must be a pointer to an object that is part of this tree.</p>
+</div><h4 id='method.cursor_mut_from_ptr' class='method'><span id='cursor_mut_from_ptr.v' class='invisible'><code>unsafe fn <a href='#method.cursor_mut_from_ptr' class='fnname'>cursor_mut_from_ptr</a>(&amp;mut self,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ptr: *const A::Container)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&gt; <a class='struct' href='../../intrusive_collections/rbtree/struct.CursorMut.html' title='intrusive_collections::rbtree::CursorMut'>CursorMut</a>&lt;A&gt;</code></span></h4>
+<div class='docblock'><p>Creates a <code>CursorMut</code> from a pointer to an element.</p>
+
+<h1 id='safety-1' class='section-header'><a href='#safety-1'>Safety</a></h1>
+<p><code>ptr</code> must be a pointer to an object that is part of this tree.</p>
+</div><h4 id='method.front' class='method'><span id='front.v' class='invisible'><code>fn <a href='#method.front' class='fnname'>front</a>(&amp;self) -&gt; <a class='struct' href='../../intrusive_collections/rbtree/struct.Cursor.html' title='intrusive_collections::rbtree::Cursor'>Cursor</a>&lt;A&gt;</code></span></h4>
+<div class='docblock'><p>Returns a <code>Cursor</code> pointing to the first element of the tree. If the
+tree is empty then a null cursor is returned.</p>
+</div><h4 id='method.front_mut' class='method'><span id='front_mut.v' class='invisible'><code>fn <a href='#method.front_mut' class='fnname'>front_mut</a>(&amp;mut self) -&gt; <a class='struct' href='../../intrusive_collections/rbtree/struct.CursorMut.html' title='intrusive_collections::rbtree::CursorMut'>CursorMut</a>&lt;A&gt;</code></span></h4>
+<div class='docblock'><p>Returns a <code>CursorMut</code> pointing to the first element of the tree. If the
+the tree is empty then a null cursor is returned.</p>
+</div><h4 id='method.back' class='method'><span id='back.v' class='invisible'><code>fn <a href='#method.back' class='fnname'>back</a>(&amp;self) -&gt; <a class='struct' href='../../intrusive_collections/rbtree/struct.Cursor.html' title='intrusive_collections::rbtree::Cursor'>Cursor</a>&lt;A&gt;</code></span></h4>
+<div class='docblock'><p>Returns a <code>Cursor</code> pointing to the last element of the tree. If the tree
+is empty then a null cursor is returned.</p>
+</div><h4 id='method.back_mut' class='method'><span id='back_mut.v' class='invisible'><code>fn <a href='#method.back_mut' class='fnname'>back_mut</a>(&amp;mut self) -&gt; <a class='struct' href='../../intrusive_collections/rbtree/struct.CursorMut.html' title='intrusive_collections::rbtree::CursorMut'>CursorMut</a>&lt;A&gt;</code></span></h4>
+<div class='docblock'><p>Returns a <code>CursorMut</code> pointing to the last element of the tree. If the
+tree is empty then a null cursor is returned.</p>
+</div><h4 id='method.find' class='method'><span id='find.v' class='invisible'><code>fn <a href='#method.find' class='fnname'>find</a>&lt;'a, Q:&nbsp;?<a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a> + <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.Ord.html' title='core::cmp::Ord'>Ord</a>&gt;(&amp;'a self, key: &amp;Q) -&gt; <a class='struct' href='../../intrusive_collections/rbtree/struct.Cursor.html' title='intrusive_collections::rbtree::Cursor'>Cursor</a>&lt;'a, A&gt; <span class='where'>where A::Key: <a class='trait' href='https://doc.rust-lang.org/nightly/core/borrow/trait.Borrow.html' title='core::borrow::Borrow'>Borrow</a>&lt;Q&gt;</span></code></span></h4>
+<div class='docblock'><p>Returns a <code>Cursor</code> pointing to an element with the given key. If no such
+element is found then a null cursor is returned.</p>
+
+<p>If multiple elements with an identical key are found then an arbitrary
+one is returned.</p>
+</div><h4 id='method.find_mut' class='method'><span id='find_mut.v' class='invisible'><code>fn <a href='#method.find_mut' class='fnname'>find_mut</a>&lt;'a, Q:&nbsp;?<a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a> + <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.Ord.html' title='core::cmp::Ord'>Ord</a>&gt;(&amp;'a mut self, key: &amp;Q) -&gt; <a class='struct' href='../../intrusive_collections/rbtree/struct.CursorMut.html' title='intrusive_collections::rbtree::CursorMut'>CursorMut</a>&lt;'a, A&gt; <span class='where'>where A::Key: <a class='trait' href='https://doc.rust-lang.org/nightly/core/borrow/trait.Borrow.html' title='core::borrow::Borrow'>Borrow</a>&lt;Q&gt;</span></code></span></h4>
+<div class='docblock'><p>Returns a <code>CursorMut</code> pointing to an element with the given key. If no
+such element is found then a null cursor is returned.</p>
+
+<p>If multiple elements with an identical key are found then an arbitrary
+one is returned.</p>
+</div><h4 id='method.lower_bound' class='method'><span id='lower_bound.v' class='invisible'><code>fn <a href='#method.lower_bound' class='fnname'>lower_bound</a>&lt;'a, Q:&nbsp;?<a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a> + <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.Ord.html' title='core::cmp::Ord'>Ord</a>&gt;(&amp;'a self, bound: <a class='enum' href='../../intrusive_collections/enum.Bound.html' title='intrusive_collections::Bound'>Bound</a>&lt;&amp;Q&gt;) -&gt; <a class='struct' href='../../intrusive_collections/rbtree/struct.Cursor.html' title='intrusive_collections::rbtree::Cursor'>Cursor</a>&lt;'a, A&gt; <span class='where'>where A::Key: <a class='trait' href='https://doc.rust-lang.org/nightly/core/borrow/trait.Borrow.html' title='core::borrow::Borrow'>Borrow</a>&lt;Q&gt;</span></code></span></h4>
+<div class='docblock'><p>Returns a <code>Cursor</code> pointing to the lowest element whose key is above
+the given bound. If no such element is found then a null cursor is
+returned.</p>
+</div><h4 id='method.lower_bound_mut' class='method'><span id='lower_bound_mut.v' class='invisible'><code>fn <a href='#method.lower_bound_mut' class='fnname'>lower_bound_mut</a>&lt;'a, Q:&nbsp;?<a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a> + <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.Ord.html' title='core::cmp::Ord'>Ord</a>&gt;(&amp;'a mut self,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bound: <a class='enum' href='../../intrusive_collections/enum.Bound.html' title='intrusive_collections::Bound'>Bound</a>&lt;&amp;Q&gt;)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&gt; <a class='struct' href='../../intrusive_collections/rbtree/struct.CursorMut.html' title='intrusive_collections::rbtree::CursorMut'>CursorMut</a>&lt;'a, A&gt; <span class='where'>where A::Key: <a class='trait' href='https://doc.rust-lang.org/nightly/core/borrow/trait.Borrow.html' title='core::borrow::Borrow'>Borrow</a>&lt;Q&gt;</span></code></span></h4>
+<div class='docblock'><p>Returns a <code>CursorMut</code> pointing to the first element whose key is
+above the given bound. If no such element is found then a null
+cursor is returned.</p>
+</div><h4 id='method.upper_bound' class='method'><span id='upper_bound.v' class='invisible'><code>fn <a href='#method.upper_bound' class='fnname'>upper_bound</a>&lt;'a, Q:&nbsp;?<a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a> + <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.Ord.html' title='core::cmp::Ord'>Ord</a>&gt;(&amp;'a self, bound: <a class='enum' href='../../intrusive_collections/enum.Bound.html' title='intrusive_collections::Bound'>Bound</a>&lt;&amp;Q&gt;) -&gt; <a class='struct' href='../../intrusive_collections/rbtree/struct.Cursor.html' title='intrusive_collections::rbtree::Cursor'>Cursor</a>&lt;'a, A&gt; <span class='where'>where A::Key: <a class='trait' href='https://doc.rust-lang.org/nightly/core/borrow/trait.Borrow.html' title='core::borrow::Borrow'>Borrow</a>&lt;Q&gt;</span></code></span></h4>
+<div class='docblock'><p>Returns a <code>Cursor</code> pointing to the last element whose key is below
+the given bound. If no such element is found then a null cursor is
+returned.</p>
+</div><h4 id='method.upper_bound_mut' class='method'><span id='upper_bound_mut.v' class='invisible'><code>fn <a href='#method.upper_bound_mut' class='fnname'>upper_bound_mut</a>&lt;'a, Q:&nbsp;?<a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a> + <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.Ord.html' title='core::cmp::Ord'>Ord</a>&gt;(&amp;'a mut self,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bound: <a class='enum' href='../../intrusive_collections/enum.Bound.html' title='intrusive_collections::Bound'>Bound</a>&lt;&amp;Q&gt;)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&gt; <a class='struct' href='../../intrusive_collections/rbtree/struct.CursorMut.html' title='intrusive_collections::rbtree::CursorMut'>CursorMut</a>&lt;'a, A&gt; <span class='where'>where A::Key: <a class='trait' href='https://doc.rust-lang.org/nightly/core/borrow/trait.Borrow.html' title='core::borrow::Borrow'>Borrow</a>&lt;Q&gt;</span></code></span></h4>
+<div class='docblock'><p>Returns a <code>CursorMut</code> pointing to the last element whose key is
+below the given bound. If no such element is found then a null
+cursor is returned.</p>
+</div><h4 id='method.insert' class='method'><span id='insert.v' class='invisible'><code>fn <a href='#method.insert' class='fnname'>insert</a>(&amp;mut self, val: <a class='struct' href='../../intrusive_collections/struct.IntrusiveRef.html' title='intrusive_collections::IntrusiveRef'>IntrusiveRef</a>&lt;A::Container&gt;) -&gt; <a class='struct' href='../../intrusive_collections/rbtree/struct.CursorMut.html' title='intrusive_collections::rbtree::CursorMut'>CursorMut</a>&lt;A&gt;</code></span></h4>
+<div class='docblock'><p>Inserts a new element into the <code>RBTree</code>.</p>
+
+<p>The new element will be inserted at the correct position in the tree
+based on its key.</p>
+
+<p>Returns a mutable cursor pointing to the newly added element.</p>
+
+<h1 id='panics' class='section-header'><a href='#panics'>Panics</a></h1>
+<p>Panics if the new element is already linked to a different intrusive
+collection.</p>
+</div><h4 id='method.entry' class='method'><span id='entry.v' class='invisible'><code>fn <a href='#method.entry' class='fnname'>entry</a>&lt;'a, Q:&nbsp;?<a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a> + <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.Ord.html' title='core::cmp::Ord'>Ord</a>&gt;(&amp;'a mut self, key: &amp;Q) -&gt; <a class='enum' href='../../intrusive_collections/rbtree/enum.Entry.html' title='intrusive_collections::rbtree::Entry'>Entry</a>&lt;'a, A&gt; <span class='where'>where A::Key: <a class='trait' href='https://doc.rust-lang.org/nightly/core/borrow/trait.Borrow.html' title='core::borrow::Borrow'>Borrow</a>&lt;Q&gt;</span></code></span></h4>
+<div class='docblock'><p>Returns an <code>Entry</code> for the given key which contains a <code>CursorMut</code> to an
+element with the given key or an <code>InsertCursor</code> which points to a place
+in which to insert a new element with the given key.</p>
+
+<p>This is more efficient than calling <code>find</code> followed by <code>insert</code> since
+the tree does not have to be searched a second time to find a place to
+insert the new element.</p>
+
+<p>If multiple elements with an identical key are found then an arbitrary
+one is returned.</p>
+</div><h4 id='method.range' class='method'><span id='range.v' class='invisible'><code>fn <a href='#method.range' class='fnname'>range</a>&lt;'a, Min:&nbsp;?<a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a> + <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.Ord.html' title='core::cmp::Ord'>Ord</a>, Max:&nbsp;?<a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a> + <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.Ord.html' title='core::cmp::Ord'>Ord</a>&gt;(&amp;'a self,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; min: <a class='enum' href='../../intrusive_collections/enum.Bound.html' title='intrusive_collections::Bound'>Bound</a>&lt;&amp;Min&gt;,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; max: <a class='enum' href='../../intrusive_collections/enum.Bound.html' title='intrusive_collections::Bound'>Bound</a>&lt;&amp;Max&gt;)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&gt; <a class='struct' href='../../intrusive_collections/rbtree/struct.Iter.html' title='intrusive_collections::rbtree::Iter'>Iter</a>&lt;'a, A&gt; <span class='where'>where A::Key: <a class='trait' href='https://doc.rust-lang.org/nightly/core/borrow/trait.Borrow.html' title='core::borrow::Borrow'>Borrow</a>&lt;Min&gt; + <a class='trait' href='https://doc.rust-lang.org/nightly/core/borrow/trait.Borrow.html' title='core::borrow::Borrow'>Borrow</a>&lt;Max&gt;</span></code></span></h4>
+<div class='docblock'><p>Constructs a double-ended iterator over a sub-range of elements in the
+tree, starting at min, and ending at max. If min is <code>Unbounded</code>, then it
+will be treated as &quot;negative infinity&quot;, and if max is <code>Unbounded</code>, then
+it will be treated as &quot;positive infinity&quot;. Thus
+<code>range(Unbounded, Unbounded)</code> will yield the whole collection.</p>
+</div><h4 id='method.iter' class='method'><span id='iter.v' class='invisible'><code>fn <a href='#method.iter' class='fnname'>iter</a>(&amp;self) -&gt; <a class='struct' href='../../intrusive_collections/rbtree/struct.Iter.html' title='intrusive_collections::rbtree::Iter'>Iter</a>&lt;A&gt;</code></span></h4>
+<div class='docblock'><p>Gets an iterator over the objects in the <code>RBTree</code>, in ascending key
+order.</p>
+</div><h4 id='method.drain' class='method'><span id='drain.v' class='invisible'><code>fn <a href='#method.drain' class='fnname'>drain</a>&lt;F&gt;(&amp;mut self, f: F) <span class='where'>where F: <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.FnMut.html' title='core::ops::FnMut'>FnMut</a>(<a class='struct' href='../../intrusive_collections/struct.IntrusiveRef.html' title='intrusive_collections::IntrusiveRef'>IntrusiveRef</a>&lt;A::Container&gt;)</span></code></span></h4>
+<div class='docblock'><p>Calls the given function for each element in the <code>RBTree</code> before
+removing it from the tree, in ascending key order.</p>
+
+<p>This will unlink all objects currently in the tree.</p>
+
+<p>If the given function panics then all elements in the <code>RBTree</code> will
+still be unlinked, but the function will not be called for any elements
+after the one that panicked.</p>
+</div><h4 id='method.clear' class='method'><span id='clear.v' class='invisible'><code>fn <a href='#method.clear' class='fnname'>clear</a>(&amp;mut self)</code></span></h4>
+<div class='docblock'><p>Removes all elements from the <code>RBTree</code>.</p>
+
+<p>This will unlink all object currently in the tree.</p>
+</div><h4 id='method.fast_clear' class='method'><span id='fast_clear.v' class='invisible'><code>fn <a href='#method.fast_clear' class='fnname'>fast_clear</a>(&amp;mut self)</code></span></h4>
+<div class='docblock'><p>Empties the <code>RBTree</code> without unlinking objects in it.</p>
+
+<p>Since this does not unlink any objects, any attempts to link these
+objects into another <code>RBTree</code> will fail but will not cause any
+memory unsafety. To unlink those objects manually, you must call the
+<code>unsafe_unlink</code> function on them.</p>
+
+<p>This is the only function that can be safely called after an object has
+been moved or dropped while still being linked into this <code>RBTree</code>.</p>
+</div><h4 id='method.take' class='method'><span id='take.v' class='invisible'><code>fn <a href='#method.take' class='fnname'>take</a>(&amp;mut self) -&gt; <a class='struct' href='../../intrusive_collections/rbtree/struct.RBTree.html' title='intrusive_collections::rbtree::RBTree'>RBTree</a>&lt;A&gt; <span class='where'>where A: <a class='trait' href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a></span></code></span></h4>
+<div class='docblock'><p>Takes all the elements out of the <code>RBTree</code>, leaving it empty. The
+taken elements are returned as a new <code>RBTree</code>.</p>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl&lt;A:&nbsp;for&lt;'a&gt; <a class='trait' href='../../intrusive_collections/rbtree/trait.TreeAdaptor.html' title='intrusive_collections::rbtree::TreeAdaptor'>TreeAdaptor</a>&lt;'a&gt; + <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html' title='core::marker::Sync'>Sync</a>&gt; <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html' title='core::marker::Sync'>Sync</a> for <a class='struct' href='../../intrusive_collections/rbtree/struct.RBTree.html' title='intrusive_collections::rbtree::RBTree'>RBTree</a>&lt;A&gt; <span class='where'>where A::Container: <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html' title='core::marker::Sync'>Sync</a></span></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-816' class='srclink' href='../../src/intrusive_collections/src/rbtree.rs.html#1372' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'></div><h3 class='impl'><span class='in-band'><code>impl&lt;A:&nbsp;for&lt;'a&gt; <a class='trait' href='../../intrusive_collections/rbtree/trait.TreeAdaptor.html' title='intrusive_collections::rbtree::TreeAdaptor'>TreeAdaptor</a>&lt;'a&gt; + <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Send.html' title='core::marker::Send'>Send</a>&gt; <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Send.html' title='core::marker::Send'>Send</a> for <a class='struct' href='../../intrusive_collections/rbtree/struct.RBTree.html' title='intrusive_collections::rbtree::RBTree'>RBTree</a>&lt;A&gt; <span class='where'>where A::Container: <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Send.html' title='core::marker::Send'>Send</a> + <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html' title='core::marker::Sync'>Sync</a></span></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-819' class='srclink' href='../../src/intrusive_collections/src/rbtree.rs.html#1375' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'></div><h3 class='impl'><span class='in-band'><code>impl&lt;'a, A:&nbsp;for&lt;'b&gt; <a class='trait' href='../../intrusive_collections/rbtree/trait.TreeAdaptor.html' title='intrusive_collections::rbtree::TreeAdaptor'>TreeAdaptor</a>&lt;'b&gt; + 'a&gt; <a class='trait' href='https://doc.rust-lang.org/nightly/core/iter/traits/trait.IntoIterator.html' title='core::iter::traits::IntoIterator'>IntoIterator</a> for &amp;'a <a class='struct' href='../../intrusive_collections/rbtree/struct.RBTree.html' title='intrusive_collections::rbtree::RBTree'>RBTree</a>&lt;A&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a id='src-822' class='srclink' href='../../src/intrusive_collections/src/rbtree.rs.html#1377-1385' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='associatedtype.Item' class='type'><span id='Item.t' class='invisible'><code>type <a href='https://doc.rust-lang.org/nightly/core/iter/traits/trait.IntoIterator.html#associatedtype.Item' class='type'>Item</a> = &amp;'a A::Container</code></span></h4>
+<div class='docblock'><p>The type of the elements being iterated over.</p>
+</div><h4 id='associatedtype.IntoIter' class='type'><span id='IntoIter.t' class='invisible'><code>type <a href='https://doc.rust-lang.org/nightly/core/iter/traits/trait.IntoIterator.html#associatedtype.IntoIter' class='type'>IntoIter</a> = <a class='struct' href='../../intrusive_collections/rbtree/struct.Iter.html' title='intrusive_collections::rbtree::Iter'>Iter</a>&lt;'a, A&gt;</code></span></h4>
+<div class='docblock'><p>Which kind of iterator are we turning this into?</p>
+</div><h4 id='method.into_iter' class='method'><span id='into_iter.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/iter/traits/trait.IntoIterator.html#tymethod.into_iter' class='fnname'>into_iter</a>(self) -&gt; <a class='struct' href='../../intrusive_collections/rbtree/struct.Iter.html' title='intrusive_collections::rbtree::Iter'>Iter</a>&lt;'a, A&gt;</code></span></h4>
+<div class='docblock'><p>Creates an iterator from a value. <a href="https://doc.rust-lang.org/nightly/core/iter/traits/trait.IntoIterator.html#tymethod.into_iter">Read more</a></p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl&lt;A:&nbsp;for&lt;'a&gt; <a class='trait' href='../../intrusive_collections/rbtree/trait.TreeAdaptor.html' title='intrusive_collections::rbtree::TreeAdaptor'>TreeAdaptor</a>&lt;'a&gt; + <a class='trait' href='https://doc.rust-lang.org/nightly/core/default/trait.Default.html' title='core::default::Default'>Default</a>&gt; <a class='trait' href='https://doc.rust-lang.org/nightly/core/default/trait.Default.html' title='core::default::Default'>Default</a> for <a class='struct' href='../../intrusive_collections/rbtree/struct.RBTree.html' title='intrusive_collections::rbtree::RBTree'>RBTree</a>&lt;A&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a id='src-830' class='srclink' href='../../src/intrusive_collections/src/rbtree.rs.html#1387-1391' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.default' class='method'><span id='default.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/default/trait.Default.html#tymethod.default' class='fnname'>default</a>() -&gt; <a class='struct' href='../../intrusive_collections/rbtree/struct.RBTree.html' title='intrusive_collections::rbtree::RBTree'>RBTree</a>&lt;A&gt;</code></span></h4>
+<div class='docblock'><p>Returns the &quot;default value&quot; for a type. <a href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html#tymethod.default">Read more</a></p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl&lt;A:&nbsp;for&lt;'a&gt; <a class='trait' href='../../intrusive_collections/rbtree/trait.TreeAdaptor.html' title='intrusive_collections::rbtree::TreeAdaptor'>TreeAdaptor</a>&lt;'a&gt;&gt; <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='struct' href='../../intrusive_collections/rbtree/struct.RBTree.html' title='intrusive_collections::rbtree::RBTree'>RBTree</a>&lt;A&gt; <span class='where'>where A::Container: <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a></span></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-834' class='srclink' href='../../src/intrusive_collections/src/rbtree.rs.html#1393-1399' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.fmt' class='method'><span id='fmt.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, f: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></span></h4>
+<div class='docblock'><p>Formats the value using the given formatter.</p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "intrusive_collections";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    <script src="../../extra.js"></script>
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>
